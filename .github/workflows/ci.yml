@@ -47,7 +47,6 @@ jobs:
       - name: Update files
         # run: npm run generate
         run: |
-          npm run prebuild
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
           git checkout prod
@@ -55,6 +54,7 @@ jobs:
           sed -i 's/static\/img\/\*//g' .gitignore
           sed -i 's/content\/navigation.json//g' .gitignore
           sed -i 's/content\/tumblr.json//g' .gitignore
+          npm run prebuild
 
       # in .gitignore replace static/img/* with ''
       - name: Commit files
