@@ -64,7 +64,7 @@ jobs:
           branch: prod
           message: 'add files and push to prod'
           # add: '-A'
-          pull_strategy: '--rebase'
+          # pull_strategy: '--rebase'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
