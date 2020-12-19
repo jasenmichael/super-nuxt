@@ -58,6 +58,7 @@ jobs:
       #     git config --local user.name "$(git log --format='%an' HEAD^!)"
       #     git add -A
       #     git commit -m "updated files"
+      #     git push --set-upstream origin prod
 
       # Deploy to local repo
 
@@ -65,4 +66,4 @@ jobs:
         with:
           commit_message: 'update files & push to prod'
           push_options: '--force'
-          branch: prod
+          branch: main
