@@ -44,22 +44,28 @@ jobs:
       - name: Run linter 👀
         run: npm run lint
 
-      - name: Run npm run generate
+      - name: Update files
         # run: npm run generate
-        run: npm run prebuild
-
-      # in .gitignore replace static/img/* with ''
-      - name: Include updated files - remove from .gitignore
         run: |
+          npm run prebuild
           sed -i 's/static\/img\/\*//g' .gitignore
           sed -i 's/content\/navigation.json//g' .gitignore
           sed -i 's/content\/tumblr.json//g' .gitignore
+
+      # in .gitignore replace static/img/* with ''
+      - name: Commit files
+        run: |
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
-          git add static/img/*
-          git add content/*
-          git commit -m "updated files"
-          git push origin prod --force
+          git commit -m "updated files" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      # git add content/*
+      # git add static/img/*
 
       # Deploy to local repo
 
