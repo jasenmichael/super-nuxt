@@ -49,6 +49,7 @@ jobs:
         run: |
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git checkout prod
           git checkout main .gitignore static/img/* content/navigation.json content/tumblr.json
           sed -i 's/static\/img\/\*//g' .gitignore
