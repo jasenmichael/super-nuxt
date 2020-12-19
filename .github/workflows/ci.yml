@@ -48,6 +48,10 @@ jobs:
         # run: npm run generate
         run: |
           npm run prebuild
+          git config --local user.email "$(git log --format='%ae' HEAD^!)"
+          git config --local user.name "$(git log --format='%an' HEAD^!)"
+          git checkout prod
+          git checkout main .gitignore static/img/* content/navigation.json content/tumblr.json
           sed -i 's/static\/img\/\*//g' .gitignore
           sed -i 's/content\/navigation.json//g' .gitignore
           sed -i 's/content\/tumblr.json//g' .gitignore
@@ -56,10 +60,11 @@ jobs:
       - name: Commit files
         # if: steps.push-action.outputs.changes_detected == 'true'
         run: |
-          git config --local user.email "$(git log --format='%ae' HEAD^!)"
-          git config --local user.name "$(git log --format='%an' HEAD^!)"
+
+
           git add -A
           git commit -m "updated files"
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
