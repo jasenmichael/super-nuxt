@@ -64,6 +64,7 @@ jobs:
           # Defaults to "Apply automatic changes"
           commit_message: 'add files and push to prod'
           branch: prod
+          push_options: '--force'
 
       # - name: Add files and push to prod
       #   uses: EndBug/add-and-commit@v5 # You can change this to use a specific version
