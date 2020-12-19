@@ -54,6 +54,8 @@ jobs:
           sed -i 's/static\/img\/\*//g' .gitignore
           sed -i 's/content\/navigation.json//g' .gitignore
           sed -i 's/content\/tumblr.json//g' .gitignore
+          git config --local user.email "$(git log --format='%ae' HEAD^!)"
+          git config --local user.name "$(git log --format='%an' HEAD^!)"
           git add -A
           git commit -m "updated files"
 
