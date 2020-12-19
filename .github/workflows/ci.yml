@@ -64,6 +64,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: prod
+          force: true
 
       # Deploy to local repo
 
