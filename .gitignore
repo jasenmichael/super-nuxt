@@ -90,7 +90,7 @@ sw.*
 *.swp
 
 # build cahe images
-static/img/*
-!static/img/.gitkeep
-content/navigation.json
-content/tumblr.json
+# static/img/*
+# !static/img/.gitkeep
+# content/navigation.json
+# content/tumblr.json
