@@ -58,15 +58,22 @@ jobs:
 
       # Deploy to local repo
 
-      - name: Add files and push to prod
-        uses: EndBug/add-and-commit@v5 # You can change this to use a specific version
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          branch: prod
-          message: 'add files and push to prod'
-          # add: '-A'
-          # pull_strategy: '--rebase'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Optional but recommended
+        # Defaults to "Apply automatic changes"
+        commit_message: 'add files and push to prod'
+        branch: prod
+
+      # - name: Add files and push to prod
+      #   uses: EndBug/add-and-commit@v5 # You can change this to use a specific version
+      #   with:
+      #     branch: prod
+      #     message: 'add files and push to prod'
+      #     # add: '-A'
+      #     # pull_strategy: '--rebase'
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       #  - name: push
       #    uses: github-actions-x/commit@v2.7
