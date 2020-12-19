@@ -1,4 +1,4 @@
-name: ci
+name: CI/CD
 
 on:
   push:
@@ -54,6 +54,7 @@ jobs:
 
       # in .gitignore replace static/img/* with ''
       - name: Commit files
+        # if: steps.push-action.outputs.changes_detected == 'true'
         run: |
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
