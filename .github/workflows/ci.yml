@@ -43,4 +43,4 @@ jobs:
         run: npm run lint
 
       - name: List Files 👀
-        run: npm run lint
+        run: ls -al
