@@ -53,8 +53,8 @@ jobs:
           sed -i 's/static\/img\/\*//g' .gitignore
           sed -i 's/content\/navigation.json//g' .gitignore
           sed -i 's/content\/tumblr.json//g' .gitignore
-          git add .gitignore 
-          git commit -m "include updated files"
+          # git add .gitignore 
+          # git commit -m "include updated files"
 
       # Deploy to local repo
 
@@ -65,4 +65,5 @@ jobs:
           commit_message: 'update files & push to prod'
           branch: prod
           push_options: '--force'
+          skip_fetch: true
           # skip_dirty_check: true
