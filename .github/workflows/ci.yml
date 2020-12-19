@@ -49,7 +49,8 @@ jobs:
         run: npm run generate
 
       # in .gitignore replace static/img/* with ''
-      - name: Include Static Images - remove static/img* from .gitignore
+      # this way
+      - name: Include Static Images - remove static/img/* from .gitignore
         run: sed -i 's/static\/img\/\*//g' .gitignore
 
       # Deploy to local repo
