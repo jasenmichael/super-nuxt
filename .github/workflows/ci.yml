@@ -54,7 +54,7 @@ jobs:
           sed -i 's/content\/navigation.json//g' .gitignore
           sed -i 's/content\/tumblr.json//g' .gitignore
           git add .gitignore 
-          git comit -m "include updated files"
+          git commit -m "include updated files"
 
       # Deploy to local repo
 
