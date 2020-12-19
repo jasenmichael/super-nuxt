@@ -9,6 +9,7 @@
         :class="i === 0 ? 'ml-auto' : 'ml-1'"
         class="items-center flex"
         @click="selectedView = i"
+        aria-label="views[i] + ' view'"
       >
         <svg
           class="w-4 h4 flex items-center"
