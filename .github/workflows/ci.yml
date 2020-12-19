@@ -57,14 +57,13 @@ jobs:
         run: |
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
-          git add content/*
-          git add static/img/*
-          git commit -m "updated files" -a
+          git add -A
+          git commit -m "updated files"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          branch: prod
 
       # Deploy to local repo
 
