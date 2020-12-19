@@ -42,8 +42,8 @@ jobs:
       - name: Run linter 👀
         run: npm run lint
 
-      - name: List Files 👀
-        run: ls -al
+      # - name: List Files 👀
+      #   run: ls -al
       # https://gist.github.com/syuji-higa/2d7ece221bb521fc202ae385c54d0325
       - name: Run npm generate
         run: npm run generate
@@ -53,6 +53,6 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: prod
-          build_dir: dist
+          build_dir: ./
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
