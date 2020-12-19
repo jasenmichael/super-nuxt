@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - master
+      # - master
   pull_request:
     branches:
       - main
-      - master
+      # - master
 
 jobs:
   ci:
@@ -41,4 +41,3 @@ jobs:
 
       - name: Run linter 👀
         run: npm run lint
-

@@ -62,6 +62,6 @@ content/
 
 - \*.md (for pages) <<-- all .md files in content folder creates a page in navigation.json
 - \*/ (for post types) <<-- all folders create a post type in navigation.json
-- _/_/ (for post content)
+- \_/\_/ (for post content)
 - siteData.json <<-- all site settings (configurable via cms)
 - navigation.json <<-- generated/updated at build (configurable via cms)
