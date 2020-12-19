@@ -42,11 +42,9 @@ jobs:
       - name: Run linter 👀
         run: npm run lint
 
-      # - name: List Files 👀
-      #   run: ls -al
-      # https://gist.github.com/syuji-higa/2d7ece221bb521fc202ae385c54d0325
       - name: Run npm run generate
-        run: npm run generate
+        # run: npm run generate
+        run: npm run prebuild
 
       # in .gitignore replace static/img/* with ''
       # this way
@@ -62,30 +60,6 @@ jobs:
         with:
           # Optional but recommended
           # Defaults to "Apply automatic changes"
-          commit_message: 'add files and push to prod'
+          commit_message: 'update files & push to prod'
           branch: prod
           push_options: '--force'
-
-      # - name: Add files and push to prod
-      #   uses: EndBug/add-and-commit@v5 # You can change this to use a specific version
-      #   with:
-      #     branch: prod
-      #     message: 'add files and push to prod'
-      #     # add: '-A'
-      #     # pull_strategy: '--rebase'
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      #  - name: push
-      #    uses: github-actions-x/commit@v2.7
-      #    with:
-      #      github-token: ${{ secrets.GITHUB_TOKEN }}
-      #      push-branch: prod
-      #      commit-message: '${{ matrix.node-version }} adds auto-generated benchmarks and bar graph'
-      #      rebase: 'true' # pull abd rebase before commit
-
-      # - name: Deploy
-      #   uses: mikeal/publish-to-github-action@master
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     BRANCH_NAME: 'prod'
