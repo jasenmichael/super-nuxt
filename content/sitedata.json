@@ -1,0 +1,57 @@
+{
+  "tumblrHandle": "supernuxt",
+  "networks": [
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com",
+      "handle": "supernuxt",
+      "icon": "",
+      "showInNav": true
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/",
+      "handle": "supernuxt",
+      "icon": "",
+      "showInNav": true
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/",
+      "handle": "supernuxt",
+      "icon": "",
+      "showInNav": true
+    },
+    {
+      "name": "Tumblr",
+      "url": "https://annefeeney.tumblr.com/",
+      "handle": "annefeeney",
+      "icon": "",
+      "showInNav": true
+    },
+    {
+      "name": "Email",
+      "url": "super@nuxtjs.org",
+      "handle": "supernuxt",
+      "icon": "",
+      "showInNav": true
+    }
+  ],
+  "name": "Super Nuxt",
+  "lang": "en-US",
+  "favicon": "/favicon.ico",
+  "siteEmail": "super@nuxtjs.org",
+  "tags": [
+    "nuxt.js",
+    "vue.js",
+    "nuxt",
+    "vue",
+    "netlifyCms",
+    "netlify",
+    "flat-file",
+    "SEO",
+    "PWA"
+  ],
+  "enableTumblrMerge": true,
+  "description": "Nuxt Supercharged with SEO enhancements, Nuxt Content with NetlifyCms(including local) all in a flat-file system."
+}
