@@ -78,7 +78,7 @@ const deserializePosts = (posts) => {
 const downloadImages = async (posts, dir) => {
   const updatedPosts = await Promise.all(
     posts.map(async (post) => {
-      if (post.type === 'photo') {
+      if (post.type === 'photos') {
         const localImage = await downloadImage(
           post.image,
           `${dir}/${post.id}.${post.image.split('.').pop()}`

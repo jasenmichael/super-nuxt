@@ -75,9 +75,6 @@ export default {
         .catch((err) => {
           return [] || err
         })
-
-      console.log(tumblrPosts)
-
       const posts = [...tumblrPosts, ...contentPosts]
       const post = null
       const page = null
