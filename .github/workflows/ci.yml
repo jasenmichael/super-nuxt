@@ -64,5 +64,5 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'update files & push to prod'
-          branch: prod
           push_options: '--force'
+          branch: prod
