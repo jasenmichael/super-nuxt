@@ -55,12 +55,19 @@ jobs:
 
       # Deploy to local repo
       - name: Deploy
-        uses: s0/git-publish-subdir-action@develop
+
+      - uses: mikeal/publish-to-github-action@master
         env:
-          REPO: self
-          BRANCH: prod
-          FOLDER: ./
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: prod #optional defaults to master
+
+
+        # uses: s0/git-publish-subdir-action@develop
+        # env:
+        #   REPO: self
+        #   BRANCH: prod
+        #   FOLDER: ./
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Deploy to GitHub Pages
       #   if: success()
