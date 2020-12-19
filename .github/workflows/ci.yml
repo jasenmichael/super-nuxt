@@ -50,15 +50,15 @@ jobs:
 
       # in .gitignore replace static/img/* with ''
       # this way
-      # - name: Include Static Images - remove static/img/* from .gitignore
-      #   run: sed -i 's/static\/img\/\*//g' .gitignore
+      - name: Include Static Images - remove static/img/* from .gitignore
+        run: sed -i 's/static\/img\/\*//g' .gitignore
+
       # Deploy to local repo
       - name: Deploy
         uses: mikeal/publish-to-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: prod #optional defaults to master
-
+          BRANCH_NAME: prod
 
         # uses: s0/git-publish-subdir-action@develop
         # env:
