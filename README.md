@@ -10,6 +10,8 @@ Nuxt + Tailwind + NuxtContent + Netlify + Netlify Identity + NetlifyCms + Tumblr
 - all posts by type routes are available at /[type] or /posts?type=[type] (see routes below)
 - all posts and all types route is available at /posts (see routes below)
 - all styling done in components
+- PWA
+-
 
 ---
 
