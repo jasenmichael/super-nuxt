@@ -20,13 +20,13 @@ jobs:
         node: [14]
 
     steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@master
-
       - name: Checkout Prod 🛎
         uses: actions/checkout@master
         with:
-          ref: prod
+          ref:
+
+      - name: Checkout 🛎
+        uses: actions/checkout@master
 
       - name: Setup node env 🏗
         uses: actions/setup-node@v2.1.2
@@ -51,7 +51,6 @@ jobs:
         # run: npm run generate
         # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         run: |
-          git checkout main
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
           git checkout prod -- static/img/ content/navigation.json content/tumblr.json 2>/dev/null
