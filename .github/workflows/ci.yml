@@ -22,9 +22,9 @@ jobs:
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@master
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
+        # with:
+        #   ref: ${{ github.head_ref }}
+        #   fetch-depth: 0
 
       - name: Setup node env 🏗
         uses: actions/setup-node@v2.1.2
@@ -64,12 +64,12 @@ jobs:
           git add -A
           git commit -m "updated files"
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: prod
-          force: true
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: prod
+      #     force: true
 
       # Deploy to local repo
 
