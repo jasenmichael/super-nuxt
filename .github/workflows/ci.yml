@@ -20,11 +20,6 @@ jobs:
         node: [14]
 
     steps:
-      - name: Checkout Prod 🛎
-        uses: actions/checkout@master
-        with:
-          ref: prod
-
       - name: Checkout 🛎
         uses: actions/checkout@master
 
@@ -48,12 +43,7 @@ jobs:
         run: npm run lint
 
       - name: Update files
-        # run: npm run generate
-        # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        # git config --local user.email "$(git log --format='%ae' HEAD^!)"
-        # git config --local user.name "$(git log --format='%an' HEAD^!)"
         run: |
-          git checkout prod -- static/img/ content/navigation.json content/tumblr.json 2>/dev/null
           sed -i 's/static\/img\/\*//g' .gitignore
           sed -i 's/content\/navigation.json//g' .gitignore
           sed -i 's/content\/tumblr.json//g' .gitignore
