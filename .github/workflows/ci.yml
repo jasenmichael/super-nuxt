@@ -58,7 +58,7 @@ jobs:
           git add static/img --force 2>/dev/null
           git add content/navigation.json --force 2>/dev/null
           git add content/tumblr.json --force 2>/dev/null
-          git commit -m "updated files" -a 2>/dev/null
+          git commit -am "updated files" --quiet 2>/dev/null
 
       - name: Push changes
         # uses: ad-m/github-push-action@master
