@@ -23,7 +23,7 @@ jobs:
       - name: Checkout Prod 🛎
         uses: actions/checkout@master
         with:
-          ref:
+          ref: prod
 
       - name: Checkout 🛎
         uses: actions/checkout@master
