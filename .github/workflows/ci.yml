@@ -53,6 +53,8 @@ jobs:
       - name: Commit files
         # if: steps.push-action.outputs.changes_detected == 'true'
         run: |
+          git config --local user.email "$(git log --format='%ae' HEAD^!)"
+          git config --local user.name "$(git log --format='%an' HEAD^!)"
           git add -A
           git commit -m "updated files" -a
 
@@ -62,6 +64,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: prod
           # force: true
+
+        # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
       # Deploy to local repo
 
