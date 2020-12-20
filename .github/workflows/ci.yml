@@ -22,9 +22,11 @@ jobs:
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@master
-        # with:
-        #   ref: ${{ github.head_ref }}
-        #   fetch-depth: 0
+
+      - name: Checkout Prod 🛎
+        uses: actions/checkout@master
+        with:
+          ref: prod
 
       - name: Setup node env 🏗
         uses: actions/setup-node@v2.1.2
@@ -48,9 +50,9 @@ jobs:
       - name: Update files
         # run: npm run generate
         # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        # git checkout prod -- static/img/ content/navigation.json content/tumblr.json
         run: |
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
+          git checkout prod -- static/img/ content/navigation.json content/tumblr.json
           git config --local user.name "$(git log --format='%an' HEAD^!)"
           sed -i 's/static\/img\/\*//g' .gitignore
           sed -i 's/content\/navigation.json//g' .gitignore
