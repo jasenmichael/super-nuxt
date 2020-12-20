@@ -50,9 +50,9 @@ jobs:
       - name: Update files
         # run: npm run generate
         # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        # git config --local user.email "$(git log --format='%ae' HEAD^!)"
+        # git config --local user.name "$(git log --format='%an' HEAD^!)"
         run: |
-          git config --local user.email "$(git log --format='%ae' HEAD^!)"
-          git config --local user.name "$(git log --format='%an' HEAD^!)"
           git checkout prod -- static/img/ content/navigation.json content/tumblr.json 2>/dev/null
           sed -i 's/static\/img\/\*//g' .gitignore
           sed -i 's/content\/navigation.json//g' .gitignore
