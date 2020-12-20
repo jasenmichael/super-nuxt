@@ -51,6 +51,7 @@ jobs:
         # run: npm run generate
         # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         run: |
+          git checkout main
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git checkout prod -- static/img/ content/navigation.json content/tumblr.json
           git config --local user.name "$(git log --format='%an' HEAD^!)"
