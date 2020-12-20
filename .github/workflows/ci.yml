@@ -64,12 +64,12 @@ jobs:
           git add -A
           git commit -m "updated files"
 
-      # - name: Push changes
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: prod
-      #     force: true
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: prod
+          force: true
 
       # Deploy to local repo
 
