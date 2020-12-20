@@ -43,10 +43,10 @@ jobs:
         run: npm run lint
 
       - name: Update files
+        # sed -i 's/static\/img\/\*//g' .gitignore
+        # sed -i 's/content\/navigation.json//g' .gitignore
+        # sed -i 's/content\/tumblr.json//g' .gitignore
         run: |
-          sed -i 's/static\/img\/\*//g' .gitignore
-          sed -i 's/content\/navigation.json//g' .gitignore
-          sed -i 's/content\/tumblr.json//g' .gitignore
           npm run prebuild
 
       # in .gitignore replace static/img/* with ''
@@ -55,15 +55,18 @@ jobs:
         run: |
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
-          git add -A
+          git add static/img --force
+          git add content/navigation.json --force
+          git add content/tumblr.json --force
           git commit -m "updated files" -a
 
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: prod
-          force: true
+          branch: ${{ github.ref }}
+
+        # force: true
 
         # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
