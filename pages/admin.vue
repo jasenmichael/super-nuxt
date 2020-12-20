@@ -6,20 +6,20 @@
 export default {
   layout: 'cms',
   data: () => {
-    return {
-      url: 'http://localhost:3000',
-    }
+    return {}
   },
   mounted() {
     if (process.client) {
       // eslint-disable-line
-      NetlifyCmsApp.init()
-      // NetlifyCmsApp.init({
-      //   // merge config with static/admin/config.yml
-      //   config: {
-      //     site_url: this.url,
-      //   },
-      // })
+      // NetlifyCmsApp.init()
+      NetlifyCmsApp.init({
+        // merge config with static/admin/config.yml
+        config: {
+          site_url:
+            (this.$config.ngrok && this.$config.ngrok.url) ||
+            this.$config.baseUrl,
+        },
+      })
     }
   },
   head: {
