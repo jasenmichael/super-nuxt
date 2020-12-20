@@ -50,7 +50,7 @@ jobs:
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git checkout prod -- .gitignore static/img/* content/navigation.json content/tumblr.json
+          git checkout prod -- static/img/ content/navigation.json content/tumblr.json
           sed -i 's/static\/img\/\*//g' .gitignore
           sed -i 's/content\/navigation.json//g' .gitignore
           sed -i 's/content\/tumblr.json//g' .gitignore
@@ -60,8 +60,6 @@ jobs:
       - name: Commit files
         # if: steps.push-action.outputs.changes_detected == 'true'
         run: |
-
-
           git add -A
           git commit -m "updated files"
 
