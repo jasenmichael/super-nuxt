@@ -17,12 +17,14 @@ Nuxt + Tailwind + NuxtContent + Netlify + Netlify Identity + NetlifyCms + Tumblr
 
 /[type]/[item] >> pages/\_type/\_item.vue
 
-- /posts - pass all posts(all types) to >> PostList.vue
-- /[type] - if posts && !item, pass posts(only type) to >> PostList.vue
-- /posts?types=[types] - if query.type pass posts(only [types]) to >> PostList.vue (TODO)
-- /[type]/[item] - if post && item >> PostItem.vue
+- /posts - pass all posts(all types) to >> Posts.vue
+- /[type] - if posts && !item, pass posts(only type) to >> Posts.vue
+- /posts?types=[types] - if query.type pass posts(only [types]) to >> Posts.vue (TODO)
+- /[type]/[item] - if post && item >> Post.vue
 
-/ - (overrides pages/\_type/\_item.vue) >> pages/index.vue
+- /[page] if not a post type or posts, and a matching .md in content folder >> components/page.vue
+
+- / - (overrides pages/\_type/\_item.vue) >> pages/index.vue
 
 ---
 
