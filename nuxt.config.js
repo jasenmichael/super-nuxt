@@ -63,6 +63,7 @@ export default {
   },
   manifest: {
     name: title,
+    theme_color: 'grey',
     lang: siteData.lang,
     display: 'standalone',
     start_url: '/',
