@@ -37,6 +37,15 @@
       "type": "blog",
       "showInNav": true,
       "sortOrder": 0
+    },
+    {
+      "slug": "photos",
+      "title": "Photos",
+      "description": "",
+      "path": "/photos",
+      "type": "photos",
+      "showInNav": true,
+      "sortOrder": 0
     }
   ]
 }
