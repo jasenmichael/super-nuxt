@@ -61,11 +61,12 @@ jobs:
           git commit -m "updated files" -a
 
       - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-          force: true
+        # uses: ad-m/github-push-action@master
+        # with:
+        #   github_token: ${{ secrets.GITHUB_TOKEN }}
+        #   branch: ${{ github.ref }}
+        #   force: true
+        run: git push -u origin main
 
         # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
