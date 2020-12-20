@@ -3,10 +3,6 @@
 </template>
 
 <script>
-// if (process.client) {
-//   const NetlifyCmsApp = require('netlify-cms-app')
-// }
-
 export default {
   layout: 'cms',
   data: () => {
@@ -33,7 +29,6 @@ export default {
         src: 'https://unpkg.com/react-dom@^16/umd/react-dom.production.min.js',
       },
       { src: 'https://unpkg.com/netlify-cms-app/dist/netlify-cms-app.js' },
-      // { src: 'https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js' },
     ],
   },
 }
