@@ -1,6 +1,6 @@
 ---
 title: home
-description: home page description
+description: home description
 type: page
 ---
 Home page welcome!!
