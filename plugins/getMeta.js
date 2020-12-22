@@ -1,15 +1,16 @@
-const siteData = require('../content/sitedata.json')
+// const siteData = require('../content/sitedata.json')
 
 export default (meta, siteData) => {
-  // export default (meta, siteData, canonical) => {
+  // defaults if not passed
   const type = 'website'
-  const url = meta.url || siteData.url
-  const title = siteData.title
+  const url = siteData.url
+  const title = siteData.name
   const description = siteData.description
   const mainImage = url + '/background.jpg'
   const twitterSite =
     '@' +
-    siteData.networks.filter((network) => network.name === 'Twitter')[0].handle
+      siteData.networks.filter((network) => network.name === 'Twitter')[0]
+        .handle || ''
   const twitterCard = 'summary_large_image'
   return [
     {

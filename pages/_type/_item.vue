@@ -1,21 +1,16 @@
 <template>
   <div>
-    <!-- if posts.length, render PostsList component -->
     <div v-if="posts">
       <Posts :posts="posts" />
-      <!-- <pre> <hr> {{ $route.path.slice(1).toUpperCase() }}: {{ posts }}</pre> -->
     </div>
 
-    <!-- if single post, render PostItem component -->
-    <div v-if="post">
+    <div v-else-if="post">
+      <pre>{{ post }}</pre>
       <Post :post="post" />
-      <!-- <pre> <hr> POST: {{ post }}</pre> -->
     </div>
 
-    <!-- treat as a page -->
-    <div v-else>
+    <div v-else-if="page">
       <Page :page="page" />
-      <!-- <pre> <hr> {{ page }}</pre> -->
     </div>
   </div>
 </template>
@@ -41,12 +36,17 @@ export default {
     if (isPostType && params.item) {
       const post = await $content(params.type, params.item)
         .fetch()
-        .catch(() => {
-          error({ statusCode: 404, message: 'Post not found' })
+        // not found in post type folder, check tumblr
+        .catch(async () => {
+          return await $content('tumblr', params.item)
+            .fetch()
+            .catch(() => {
+              error({ statusCode: 404, message: 'Post not found' })
+            })
         })
       const posts = null
       const page = null
-      return { post, posts, page }
+      return { post, posts, page, params }
     }
 
     // get all of one type /type
@@ -78,7 +78,7 @@ export default {
       const posts = [...tumblrPosts, ...contentPosts]
       const post = null
       const page = null
-      return { posts, post, page }
+      return { posts, post, page, params }
     }
 
     // get all types /posts
@@ -122,7 +122,7 @@ export default {
       const posts = [...tumblrPosts, ...contentPosts]
       const post = null
       const page = null
-      return { posts, post, page }
+      return { posts, post, page, params }
     }
 
     // is a page
@@ -130,7 +130,7 @@ export default {
       const posts = null
       const post = null
       const page = await $content(params.type).fetch()
-      return { page, posts, post }
+      return { page, posts, post, params }
     } else {
       error({ statusCode: 404, message: 'Post not found' })
     }
@@ -140,47 +140,54 @@ export default {
       query: this.$route.query,
     }
   },
-  // computed: {
-  //   canonicalUrl() {
-  //     return (
-  //       ((this.$config.ngrok && this.$config.ngrok.url) ||
-  //         this.$config.baseUrl) + this.$route.fullPath
-  //     )
-  //   },
-  //   meta() {
-  //     const metaData = {
-  //       type: 'website', // use article for blogs and such
-  //       title:
-  //         this.$config.siteData.name +
-  //         ' | ' +
-  //         this.params.type.charAt(0).toUpperCase() +
-  //         this.params.type.slice(1) +
-  //         ' Collection',
-  //       description: this.$config.siteData.description,
-  //       url: this.canonicalUrl,
-  //       mainImage:
-  //         ((this.$config.ngrok && this.$config.ngrok.url) ||
-  //           this.$config.baseUrl) +
-  //         ((this.page && this.page.cover) || '/background.jpg'),
-  //     }
-  //     return getMeta(metaData, this.$config.siteData, this.canonicalUrl)
-  //   },
-  // },
-  // mounted() {},
-  // head() {
-  //   return {
-  //     // title: this.params.type
-  //     //   ? this.params.type + ' collection'
-  //     //   : this.$config.siteData.name,
-  //     meta: this.meta,
-  //     link: [
-  //       {
-  //         hid: 'canonical',
-  //         rel: 'canonical',
-  //         href: this.canonicalUrl,
-  //       },
-  //     ],
-  //   }
-  // },
+  computed: {
+    canonicalUrl() {
+      return (
+        ((this.$config.ngrok && this.$config.ngrok.url) ||
+          this.$config.baseUrl) + this.$route.fullPath
+      )
+    },
+    meta() {
+      const metaData = {
+        // description - adds to: description, og:description, and twitter:description
+        // type - adds to:  og:type - website or article..
+        // url - sets og:url and twitter:url - defaults to canonical
+        // title - adds to og:title and twitter:title
+        // mainImage - sets og:image and twitter:image
+        // twitterCard - sets twitter:card - defaults to 'summary_large_image'
+        // twitterSite - sets twitter:site - defaults to siteData.networks.filter((network) => network.name === 'Twitter')[0].handle
+
+        type: this.page ? 'website' : this.posts ? 'article' : 'website', // use article for blogs and such
+        title: this.title,
+        description: this.$config.siteData.description,
+        url: this.canonicalUrl,
+        mainImage:
+          ((this.$config.ngrok && this.$config.ngrok.url) ||
+            this.$config.baseUrl) +
+          ((this.page && this.page.cover) || '/background.jpg'),
+      }
+      return getMeta(metaData, this.$config.siteData)
+    },
+    title() {
+      return (
+        this.params.type.charAt(0).toUpperCase() +
+        this.params.type.slice(1) +
+        ' Collection'
+      )
+    },
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: this.meta,
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: this.canonicalUrl,
+        },
+      ],
+    }
+  },
 }
 </script>

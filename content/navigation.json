@@ -1,15 +1,6 @@
 {
   "pages": [
     {
-      "slug": "about",
-      "title": "About",
-      "description": "",
-      "path": "/about",
-      "type": "page",
-      "showInNav": true,
-      "sortOrder": 0
-    },
-    {
       "slug": "contact",
       "title": "Contact",
       "description": "",
@@ -17,18 +8,18 @@
       "type": "page",
       "showInNav": true,
       "sortOrder": 0
+    },
+    {
+      "slug": "about",
+      "title": "About",
+      "description": "",
+      "path": "/about",
+      "type": "page",
+      "showInNav": true,
+      "sortOrder": 1
     }
   ],
   "posts": [
-    {
-      "slug": "articles",
-      "title": "Articles",
-      "description": "",
-      "path": "/articles",
-      "type": "articles",
-      "showInNav": true,
-      "sortOrder": 0
-    },
     {
       "slug": "blog",
       "title": "Blog",
@@ -39,13 +30,22 @@
       "sortOrder": 0
     },
     {
+      "slug": "articles",
+      "title": "Articles",
+      "description": "",
+      "path": "/articles",
+      "type": "articles",
+      "showInNav": true,
+      "sortOrder": 1
+    },
+    {
       "slug": "photos",
       "title": "Photos",
       "description": "",
       "path": "/photos",
       "type": "photos",
       "showInNav": true,
-      "sortOrder": 0
+      "sortOrder": 2
     }
   ]
 }

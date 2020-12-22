@@ -34,24 +34,18 @@ collections:
             widget: string
             required: false
 
-          - label: Site Twitter Handle
-            name: twitterHandle
-            editor:
-              preview: false
-            widget: string
-            required: false
-          - label: Site Tumblr Handle
-            name: tumblrHandle
-            widget: string
-            required: false
-          - label: Enable Merging of Tumblr Posts
-            name: enableTumblrMerge
-            widget: boolean
-            hint: enable merging of Tumblr posts(Tumblr handle required)
-            required: true
-            default: true
+          # - label: Site Twitter Handle
+          #   name: twitterHandle
+          #   editor:
+          #     preview: false
+          #   widget: string
+          #   required: false
+          # - label: Site Tumblr Handle
+          # name: tumblrHandle
+          # widget: string
+          # required: false
 
-          - label: Tags
+          - label: Tags/Keywords
             name: tags
             widget: list
             allow_add: true
@@ -79,12 +73,13 @@ collections:
               - label: Handle
                 name: handle
                 widget: string
-                required: false
+                required: true
           - label: Favicon
             name: favicon
             widget: file
             allow_multiple: false
-            required: false
+            required: true
+            default: /favicon.ico
 
           - label: Site Language
             name: lang
@@ -92,6 +87,12 @@ collections:
             pattern:
               - ^[a-z]{2}([-])?([A-Za-z]{2})?$
               - Must match "xx" or "xx-XX" syntax (ex. "en" or "sv-SE")
+          - label: Enable Merging of Tumblr Posts
+            name: enableTumblrMerge
+            widget: boolean
+            hint: enable merging of Tumblr posts(Tumblr handle required)
+            required: false
+            default: false
 
       - label: Navigation Link Settings
         name: navigation
@@ -100,29 +101,10 @@ collections:
         editor:
           preview: false
         fields:
-          - label: Navigation Post Type
-            name: posts
-            label_singular: Post Type
-            widget: list
-            summary: '{{fields.title}}'
-            hint: 'Drag to sort order shown in navigation, Edit: title, description, show in navigation'
-            fields:
-              - label: Title
-                name: title
-                required: true
-                widget: string
-              - label: Description
-                name: description
-                required: false
-                widget: string
-              - label: Show in Navigation
-                name: showInNav
-                required: true
-                widget: boolean
-                default: true
           - label: Navigation Pages
             name: pages
             label_singular: Navigation Page
+            create: false
             widget: list
             summary: '{{fields.title}}'
             hint: 'Drag to sort order shown in navigation, Edit: title, description, show in navigation'
@@ -140,13 +122,43 @@ collections:
                 required: true
                 widget: boolean
                 default: true
+              - label: Sort Order
+                name: sortOrder
+                widget: hidden
+                required: false
+                default: null
+
+          - label: Navigation Post Type
+            name: posts
+            label_singular: Post Type
+            create: false
+            widget: list
+            summary: '{{fields.title}}'
+            hint: 'Drag to sort order shown in navigation, Edit: title, description, show in navigation'
+            fields:
+              - label: Title
+                name: title
+                required: true
+                widget: string
+              - label: Description
+                name: description
+                required: false
+                widget: string
+              - label: Show in Navigation
+                name: showInNav
+                required: true
+                widget: boolean
+                default: true
+              - label: Sort Order
+                name: sortOrder
+                widget: hidden
+                required: false
+                default: null
 
   ######################################
   # to add
   #  seo
   #    default share image
-  # merge tumblr posts
-  # tumblr page
   # convert @user to links - twitter/instagram/disabled
   # convert #tags to links - twitter/instagram/disabled
   ######################################

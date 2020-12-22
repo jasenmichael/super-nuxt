@@ -12,7 +12,7 @@ const init = async () => {
   const sourceDir = `${process.cwd()}/content` // dir to scan for dirs
   const navigationJsonPath = `${process.cwd()}/content/navigation.json` // save path to json
   await createNavigationJson(sourceDir, navigationJsonPath)
-  await cacheTumblrDownloadImages()
+  // await cacheTumblrDownloadImages()
 }
 
 const createNavigationJson = async (sourceDir, destJson) => {
@@ -42,7 +42,7 @@ const createNavigationJson = async (sourceDir, destJson) => {
           path: '/' + slug,
           type: 'page',
           showInNav: true,
-          sortOrder: 0,
+          // sortOrder: 0,
         }
       } else {
         // is a dir
@@ -54,7 +54,7 @@ const createNavigationJson = async (sourceDir, destJson) => {
           path: '/' + fileOrDir,
           type: fileOrDir,
           showInNav: true,
-          sortOrder: 0,
+          // sortOrder: 0,
         }
       }
     })
@@ -63,22 +63,49 @@ const createNavigationJson = async (sourceDir, destJson) => {
 
   // create pages array
   let pages = files.filter((i) => i.type === 'page')
+  pages.map((page) => {
+    page.sortOrder = pages.findIndex((cp) => cp.title === page.title)
+    return page
+  })
   // create posts array
   let posts = files.filter((i) => i.type !== 'page')
+  posts.map((post) => {
+    post.sortOrder = posts.findIndex((cp) => cp.title === post.title)
+    console.log(post)
+    return post
+  })
   // load(if exist) content/navigation.json
   const cachedNavigationJson = await loadNavigationJson(destJson)
   // console.log(cachedNavigationJson)
   pages = pages.map((page) => {
-    const cachedPage = cachedNavigationJson.pages.filter(
+    let cachedPage = cachedNavigationJson.pages.filter(
+      // retain cached version incase a title description provided; or sorted via cms
       (cachedPage) => page.slug === cachedPage.slug
     )[0]
+    if (cachedPage) {
+      cachedPage = {
+        // set the sort order as it was in the cache
+        sortOrder: cachedNavigationJson.pages.findIndex(
+          (cp) => cp.title === page.title
+        ),
+      }
+    }
+    // if there is a cache return
     return cachedPage ? { ...page, ...cachedPage } : page
   })
 
   posts = posts.map((post) => {
-    const cachedPost = cachedNavigationJson.posts.filter(
+    let cachedPost = cachedNavigationJson.posts.filter(
       (cachedPost) => post.slug === cachedPost.slug
     )[0]
+    if (cachedPost) {
+      cachedPost = {
+        ...cachedPost,
+        sortOrder: cachedNavigationJson.posts.findIndex(
+          (cp) => cp.title === post.title
+        ),
+      }
+    }
     return cachedPost ? { ...post, ...cachedPost } : post
   })
   // console.log(posts)
@@ -87,6 +114,8 @@ const createNavigationJson = async (sourceDir, destJson) => {
   //   posts: [...posts, ...cachedNavigationJson.posts],
   //   pages: [...pages, ...cachedNavigationJson.pages],
   // }
+  pages.sort((a, b) => a.sortOrder - b.sortOrder)
+  posts.sort((a, b) => a.sortOrder - b.sortOrder)
   let navigation = { pages, posts }
   navigation = JSON.stringify(navigation, null, 2)
   const cachedNavigation = JSON.stringify(cachedNavigationJson, null, 2)
