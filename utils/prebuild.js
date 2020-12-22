@@ -12,7 +12,7 @@ const init = async () => {
   const sourceDir = `${process.cwd()}/content` // dir to scan for dirs
   const navigationJsonPath = `${process.cwd()}/content/navigation.json` // save path to json
   await createNavigationJson(sourceDir, navigationJsonPath)
-  // await cacheTumblrDownloadImages()
+  await cacheTumblrDownloadImages()
 }
 
 const createNavigationJson = async (sourceDir, destJson) => {
