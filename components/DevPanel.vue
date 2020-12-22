@@ -3,11 +3,18 @@
     <div class="flex">
       <div class="pr-3">DEV PANEL</div>
       <button
-        class="px-2 hover:shadow-md rounded-sm border-solid border-2 border-grey-400"
+        class="mr-auto px-2 hover:shadow-md rounded-sm border-solid border-2 border-grey-400"
         @click="toggleShowHead()"
       >
         {{ theHead ? 'Hide' : 'Show' }} Head
       </button>
+      <nuxt-link to="admin/" target="_blank">
+        <button
+          class="px-2 hover:shadow-md rounded-sm border-solid border-2 border-grey-400"
+        >
+          CMS
+        </button>
+      </nuxt-link>
     </div>
     <div class="flex">
       <pre v-if="theHead"><hr>{{ theHead }}<hr></pre>
