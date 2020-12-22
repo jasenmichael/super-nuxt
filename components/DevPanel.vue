@@ -31,7 +31,10 @@ export default {
     toggleShowHead() {
       this.theHead = this.theHead
         ? false
-        : document.head.innerHTML.split('<style type=')[0].trim()
+        : document.head.innerHTML
+            .split('<style type=')[0]
+            .trim()
+            .replace(/\r\n\r\r/g, '\r\n')
       // console.log('clicked..', this.theHead)
     },
   },
