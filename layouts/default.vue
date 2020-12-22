@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col mx-auto min-h-screen px-3 md:w-10/12 lg:max-w-screen-lg"
+    class="dark:bg-gray-800 flex flex-col mx-auto min-h-screen px-3 md:w-10/12 lg:max-w-screen-lg"
   >
     <!-- header -->
     <header>
