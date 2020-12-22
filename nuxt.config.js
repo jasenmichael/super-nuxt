@@ -46,7 +46,13 @@ export default {
   ],
   modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxt/content'],
   axios: {},
-  content: {},
+  content: {
+    markdown: {
+      prism: {
+        theme: 'prism-themes/themes/prism-atom-dark.css',
+      },
+    },
+  },
   build: {},
   workbox: {
     // cleanupOutdatedCaches: true,
