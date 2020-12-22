@@ -6,7 +6,6 @@
     "dev": "nuxt",
     "predev": "node ./utils/prebuild.js",
     "prebuild": "node ./utils/prebuild.js",
-    "pregenerate": "node ./utils/prebuild.js",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
