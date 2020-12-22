@@ -71,7 +71,6 @@ const createNavigationJson = async (sourceDir, destJson) => {
   let posts = files.filter((i) => i.type !== 'page')
   posts.map((post) => {
     post.sortOrder = posts.findIndex((cp) => cp.title === post.title)
-    console.log(post)
     return post
   })
   // load(if exist) content/navigation.json
