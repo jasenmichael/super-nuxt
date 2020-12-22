@@ -92,5 +92,5 @@ sw.*
 # build cahe images
 static/img/*
 !static/img/.gitkeep
-content/navigation.json
+# content/navigation.json
 content/tumblr.json
