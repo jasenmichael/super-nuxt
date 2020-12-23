@@ -118,8 +118,8 @@ const createNavigationJson = async (sourceDir, destJson) => {
   let navigation = { pages, posts }
   navigation = JSON.stringify(navigation, null, 2)
   const cachedNavigation = JSON.stringify(cachedNavigationJson, null, 2)
-  // write/re-write content/navigation.json
 
+  // write/re-write content/navigation.json
   if (cachedNavigation !== navigation) {
     fs.writeFile(destJson, navigation, function (err) {
       if (err) {

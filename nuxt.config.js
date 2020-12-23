@@ -12,11 +12,11 @@ const title =
     .replace(/-/g, ' ')
     .replace(/(^\w{1})|(\s+\w{1})/g, (l) => l.toUpperCase())
 const description = siteData.description || process.env.npm_package_description
-const twitterHandle =
-  '@' +
-    siteData.networks.filter((network) => network.name === 'Twitter')[0]
-      .handle || ''
-const defaultShareImage = url + '/background.jpg'
+// const twitterHandle =
+//   '@' +
+//     siteData.networks.filter((network) => network.name === 'Twitter')[0]
+//       .handle || ''
+// const defaultShareImage = url + '/background.jpg'
 
 export default {
   target: 'static',
