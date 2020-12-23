@@ -51,9 +51,9 @@ jobs:
         run: |
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
-          git add static/img
-          git add content/navigation.json
-          git add content/tumblr.json
+          ls static/img 1>/dev/null 2>/dev/null && git add static/img
+          ls content/navigation.json 1>/dev/null 2>/dev/null && git add content/navigation.json
+          ls content/tumblr.json 1>/dev/null 2>/dev/null && git add content/tumblr.json
           git diff-index --quiet HEAD || git commit -am "updated files" --allow-empty
 
       - name: Push changes
