@@ -1,5 +1,6 @@
 const fs = require('fs')
 const tumblrCache = require('./tumblr')
+const siteData = require(`${process.cwd()}/content/sitedata.json`)
 // const createNavigationJson = require('./createNavigation')
 // run these steps before build
 
@@ -12,7 +13,14 @@ const init = async () => {
   const sourceDir = `${process.cwd()}/content` // dir to scan for dirs
   const navigationJsonPath = `${process.cwd()}/content/navigation.json` // save path to json
   await createNavigationJson(sourceDir, navigationJsonPath)
-  await cacheTumblrDownloadImages()
+  const tumblrHandle = siteData.networks.filter((n) => n.name === 'Tumblr')[0]
+    ? siteData.networks.filter((n) => n.name === 'Tumblr')[0].handle
+    : null
+  if (siteData.enableTumblrMerge && tumblrHandle) {
+    console.log('Tumblr merge enabled for handle:', tumblrHandle)
+    console.log('Now Updating tumblr.json')
+    await cacheTumblrDownloadImages()
+  }
 }
 
 const createNavigationJson = async (sourceDir, destJson) => {

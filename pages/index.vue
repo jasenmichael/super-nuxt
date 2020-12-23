@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <nuxt-content :document="page"></nuxt-content>
-  </div>
+  <Home :page="page" />
 </template>
 
 <script>

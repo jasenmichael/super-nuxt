@@ -9,22 +9,22 @@
     },
     {
       "name": "Instagram",
-      "url": "https://www.instagram.com/",
+      "url": "https://www.instagram.com",
       "handle": "supernuxt",
       "icon": "",
       "showInNav": true
     },
     {
       "name": "Twitter",
-      "url": "https://twitter.com/",
+      "url": "https://twitter.com/supernuxt",
       "handle": "supernuxt",
       "icon": "",
       "showInNav": true
     },
     {
       "name": "Tumblr",
-      "url": "https://annefeeney.tumblr.com/",
-      "handle": "annefeeney",
+      "url": "https://supernuxt.tumblr.com/",
+      "handle": "supernuxt",
       "icon": "",
       "showInNav": true
     },
@@ -51,6 +51,6 @@
     "SEO",
     "PWA"
   ],
-  "enableTumblrMerge": true,
+  "enableTumblrMerge": false,
   "description": "Nuxt Supercharged with SEO enhancements, Nuxt Content with NetlifyCms(including local) all in a flat-file system."
 }
